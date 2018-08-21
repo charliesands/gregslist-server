@@ -1,16 +1,16 @@
 const router = require('express').Router()
-let Car = require('../models/Car')
+let House = require('../models/House')
 
 router.get('/:id?', (req, res, next) => {
   if (!req.params.id) {
-    Car.find({})
-      .then(cars => {
-        return res.send(cars)
+    House.find({})
+      .then(houses => {
+        return res.send(houses)
       })
   }
-  Car.findById(req.params.id)
-    .then(car => {
-      res.send(car)
+  House.findById(req.params.id)
+    .then(house => {
+      res.send(house)
     })
     .catch(err => {
       console.log(err)
@@ -18,12 +18,12 @@ router.get('/:id?', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  let newCar = req.body
-  console.log(newCar)
-  Car.create(newCar)
-    .then(car => {
-      console.log(car)
-      res.send(car)
+  let newHouse = req.body
+  console.log(newHouse)
+  House.create(newHouse)
+    .then(house => {
+      console.log(house)
+      res.send(house)
     })
     .catch(err => {
       res.status(400).send(err)
@@ -31,10 +31,10 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Car.findByIdAndUpdate(req.params.id, req.body, {
+  House.findByIdAndUpdate(req.params.id, req.body, {
     new: true
   })
-    .then(newCar => {
+    .then(newHouse => {
       res.send('Deleted')
     })
     .catch(err => {

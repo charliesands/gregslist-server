@@ -1,16 +1,16 @@
 const router = require('express').Router()
-let Car = require('../models/Car')
+let Job = require('../models/Job')
 
 router.get('/:id?', (req, res, next) => {
   if (!req.params.id) {
-    Car.find({})
-      .then(cars => {
-        return res.send(cars)
+    Job.find({})
+      .then(jobs => {
+        return res.send(jobs)
       })
   }
-  Car.findById(req.params.id)
-    .then(car => {
-      res.send(car)
+  Job.findById(req.params.id)
+    .then(job => {
+      res.send(job)
     })
     .catch(err => {
       console.log(err)
@@ -18,12 +18,12 @@ router.get('/:id?', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  let newCar = req.body
-  console.log(newCar)
-  Car.create(newCar)
-    .then(car => {
-      console.log(car)
-      res.send(car)
+  let newJob = req.body
+  console.log(newJob)
+  Job.create(newJob)
+    .then(job => {
+      console.log(job)
+      res.send(job)
     })
     .catch(err => {
       res.status(400).send(err)
@@ -31,10 +31,10 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Car.findByIdAndUpdate(req.params.id, req.body, {
+  Job.findByIdAndUpdate(req.params.id, req.body, {
     new: true
   })
-    .then(newCar => {
+    .then(newJob => {
       res.send('Deleted')
     })
     .catch(err => {

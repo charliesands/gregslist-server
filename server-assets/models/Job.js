@@ -2,30 +2,26 @@ let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
 let schema = new Schema({
-  make: {
+  company: {
     type: String,
     required: true
   },
-  model: {
+  jobTitle: {
     type: String,
     required: true
   },
-  year: {
-    type: Number,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  imgUrl: {
+  hours: {
     type: String,
-    default: "http://unsplash.it/200x200"
+    required: true
   },
-  description: {
+  rate: {
+    type: String,
+    required: true
+  },
+  discription: {
     type: String,
     default: "No description"
   }
 })
 
-module.exports = mongoose.model('Car', schema)
+module.exports = mongoose.model('Job', schema)
